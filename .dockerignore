@@ -1,5 +1,7 @@
 .git
 .env
+.env.*
+!.env.example
 .venv
 ll_env
 **/__pycache__

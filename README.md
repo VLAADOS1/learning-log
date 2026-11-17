@@ -5,7 +5,7 @@
 ## Адреса для сдачи
 
 - [Публичный репозиторий GitHub](https://github.com/VLAADOS1/learning-log)
-- [Приложение по HTTPS](https://learning-log.201-3-225-35.sslip.io/)
+- [Приложение по HTTPS](https://pay.pixta.top/learning-log/)
 - [IP и порт сервера Pixta](http://201.3.225.35:20010/) перенаправляют на HTTPS.
 
 ## Развёртывание на учебном сервере
@@ -40,11 +40,12 @@ docker compose logs --tail=50 web
 | `DJANGO_USE_HTTPS` | `True` за доверенным HTTPS-прокси. Включает защищённые cookies и перенаправление на HTTPS. |
 | `APP_BIND_IP`, `APP_PORT` | Внешний адрес и порт Docker. В примере `0.0.0.0` и `20010`. |
 | `APP_HOST` | Домен журнала для конфигурации Traefik. |
+| `APP_PATH` | Префикс URL за Traefik с начальным слешем. Оставьте пустым для запуска от корня домена. |
 | `SQLITE_PATH` | Путь к SQLite. В Compose задан как `/app/data/db.sqlite3`. |
 
 ## Деплой по HTTPS на Pixta
 
-Конфигурация использует существующий Traefik с сетью `traefik_proxy`, точкой входа `websecure` и ACME-резолвером `le`. Укажите домен в `APP_HOST` и `DJANGO_ALLOWED_HOSTS`, полный HTTPS-адрес в `DJANGO_CSRF_TRUSTED_ORIGINS` и установите `DJANGO_USE_HTTPS=True`. На Pixta выбран домен `learning-log.201-3-225-35.sslip.io`, который разрешается в IP сервера.
+Конфигурация использует существующий Traefik с сетью `traefik_proxy`, точкой входа `websecure` и ACME-резолвером `le`. Укажите домен в `APP_HOST` и `DJANGO_ALLOWED_HOSTS`, полный HTTPS-адрес в `DJANGO_CSRF_TRUSTED_ORIGINS` и установите `DJANGO_USE_HTTPS=True`. На Pixta журнал доступен на домене `pay.pixta.top` по префиксу `APP_PATH=/learning-log`.
 
 ```sh
 docker compose -f compose.yaml -f compose.traefik.yaml -f compose.ip-redirect.yaml up -d --build

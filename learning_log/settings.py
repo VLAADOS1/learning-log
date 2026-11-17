@@ -77,7 +77,10 @@ LANGUAGE_CODE = "ru"
 TIME_ZONE = "Europe/Moscow"
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = "/static/"
+APP_PATH = os.getenv("APP_PATH", "").rstrip("/")
+FORCE_SCRIPT_NAME = APP_PATH or None
+SESSION_COOKIE_PATH = CSRF_COOKIE_PATH = f"{APP_PATH}/"
+STATIC_URL = f"{APP_PATH}/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
