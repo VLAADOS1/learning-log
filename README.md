@@ -59,6 +59,7 @@ docker compose -f compose.yaml -f compose.traefik.yaml -f compose.ip-redirect.ya
 ```sh
 python -m pip install -r requirements.txt
 python manage.py migrate
+python manage.py collectstatic --noinput
 python manage.py test
 python manage.py runserver
 ```
