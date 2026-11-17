@@ -5,6 +5,7 @@
 ## Адреса для сдачи
 
 - [Публичный репозиторий GitHub](https://github.com/VLAADOS1/learning-log)
+- [Учебный сервер — 192.168.1.11:20360](http://192.168.1.11:20360/) доступен из учебной сети.
 - [Приложение по HTTPS](https://pay.pixta.top/learning-log/)
 - [IP и порт сервера Pixta](http://201.3.225.35:20010/) перенаправляют на HTTPS.
 
@@ -29,7 +30,7 @@ cp .env.example .env
 openssl rand -hex 48
 ```
 
-Сохраните сгенерированное значение в `DJANGO_SECRET_KEY`. Для учебного сервера укажите `DJANGO_ALLOWED_HOSTS=192.168.1.11,localhost,127.0.0.1`, `DJANGO_DEBUG=False`, `DJANGO_USE_HTTPS=False` и `APP_BIND_IP=0.0.0.0`. Первый порт из `newproject` укажите в `APP_PORT` и в адресе `http://192.168.1.11:ПОРТ` для `DJANGO_CSRF_TRUSTED_ORIGINS`. Запустите:
+Сохраните сгенерированное значение в `DJANGO_SECRET_KEY`. Для учебного сервера укажите `DJANGO_ALLOWED_HOSTS=192.168.1.11,localhost,127.0.0.1`, `DJANGO_DEBUG=False`, `DJANGO_USE_HTTPS=False` и `APP_BIND_IP=0.0.0.0`. В `APP_PORT` можно указать `APP_PORT=${PORT1}`. Первый порт из `newproject` используйте в адресе `http://192.168.1.11:ПОРТ` для `DJANGO_CSRF_TRUSTED_ORIGINS`. Запустите:
 
 ```sh
 docker compose up -d --build
