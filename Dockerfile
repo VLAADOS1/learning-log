@@ -8,4 +8,4 @@ COPY --chown=journal:journal . .
 RUN install -d -o journal -g journal /app/data /app/staticfiles
 USER journal
 EXPOSE 8000
-CMD ["sh", "-ec", "python manage.py migrate --noinput && python manage.py collectstatic --noinput && exec gunicorn --bind 0.0.0.0:8000 --workers 2 --access-logfile - learning_log.wsgi:application"]
+CMD ["gunicorn", "learning_log.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "1", "--threads", "4", "--timeout", "60"]

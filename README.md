@@ -10,7 +10,17 @@
 
 ## Развёртывание на учебном сервере
 
-Понадобятся Docker и Docker Compose. Склонируйте проект и создайте файл настроек.
+На учебном сервере подключитесь по SSH к `student@192.168.1.11`. Выполните `newproject kuznetsov-learning-log` (замените имя проекта на своё, если нужно) и запишите первый выделенный порт. Затем перейдите в созданный каталог. Сохраните существующие строки `COMPOSE_PROJECT_NAME`, `PORT1` и другие настройки, созданные `newproject`.
+
+```sh
+cd ~/projects/kuznetsov-learning-log
+git init -b main
+git remote add origin https://github.com/VLAADOS1/learning-log.git
+git pull origin main
+openssl rand -hex 48
+```
+
+На своём сервере без `newproject` можно вместо этого клонировать проект и создать файл настроек.
 
 ```sh
 git clone https://github.com/VLAADOS1/learning-log.git
@@ -19,7 +29,7 @@ cp .env.example .env
 openssl rand -hex 48
 ```
 
-Сохраните сгенерированное значение в `DJANGO_SECRET_KEY`. Укажите IP учебного сервера в `DJANGO_ALLOWED_HOSTS`, а выделенный порт в `APP_PORT`. Запустите:
+Сохраните сгенерированное значение в `DJANGO_SECRET_KEY`. Для учебного сервера укажите `DJANGO_ALLOWED_HOSTS=192.168.1.11,localhost,127.0.0.1`, `DJANGO_DEBUG=False`, `DJANGO_USE_HTTPS=False` и `APP_BIND_IP=0.0.0.0`. Первый порт из `newproject` укажите в `APP_PORT` и в адресе `http://192.168.1.11:ПОРТ` для `DJANGO_CSRF_TRUSTED_ORIGINS`. Запустите:
 
 ```sh
 docker compose up -d --build

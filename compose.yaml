@@ -4,6 +4,19 @@ services:
     env_file: .env
     environment:
       SQLITE_PATH: /app/data/db.sqlite3
+    command:
+      - sh
+      - -ec
+      - |
+        python manage.py migrate --noinput
+        python manage.py collectstatic --noinput
+        exec gunicorn learning_log.wsgi:application --bind 0.0.0.0:8000 --workers 1 --threads 4 --timeout 60
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8000), timeout=2).close()"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
     ports:
       - "${APP_BIND_IP:-0.0.0.0}:${APP_PORT:-20010}:8000"
     volumes:
