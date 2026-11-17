@@ -1,0 +1,24 @@
+body { margin: 0; background: #f6f8f5; color: #19302b; font: 1rem/1.55 system-ui, sans-serif; }
+a { color: #196153; }
+a:hover { color: #123e36; }
+.site-header { background: white; border-bottom: 1px solid #dce5df; }
+.site-header nav { min-height: 72px; padding-block: .65rem; gap: .5rem 1rem; }
+.brand { color: #19302b; font-weight: 750; font-size: 1.18rem; }
+.nav-links { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.username { color: #53665f; overflow-wrap: anywhere; }
+.page { max-width: 900px; padding-top: clamp(2rem, 7vw, 5rem); padding-bottom: 3rem; }
+h1 { font-size: clamp(2rem, 6vw, 3.35rem); font-weight: 760; letter-spacing: -.045em; margin: 0 0 1rem; overflow-wrap: anywhere; }
+.hero { background: #e1eee6; border-radius: 1.25rem; padding: clamp(1.5rem, 7vw, 4.5rem); }
+.hero p { max-width: 33rem; font-size: 1.15rem; margin-bottom: 1.6rem; }
+.btn-primary { background: #225d4e; border-color: #225d4e; }
+.btn-primary:hover, .btn-primary:focus { background: #174238; border-color: #174238; }
+.btn-outline-primary { color: #225d4e; border-color: #225d4e; }
+.btn-outline-primary:hover { background: #225d4e; border-color: #225d4e; }
+.section-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .55rem 1rem; margin-bottom: 1.2rem; }
+.section-heading h1 { margin: 0; }
+.topic-row, .entry, .form-panel, .empty { display: block; padding: 1.15rem 1.35rem; border: 1px solid #dce5df; border-radius: .85rem; background: #fff; margin-bottom: .75rem; }
+.topic-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .35rem 1rem; overflow-wrap: anywhere; }
+time, .empty { color: #53665f; }
+.entry-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.form-panel { max-width: 38rem; padding: clamp(1rem, 5vw, 2.25rem); }
+.back { display: inline-block; margin-bottom: .85rem; overflow-wrap: anywhere; }

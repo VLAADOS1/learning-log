@@ -1,0 +1,14 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+{% block title %}{{ title }} · Учебный журнал{% endblock %}
+{% block content %}
+<section class="form-panel">
+  {% if topic %}<a class="back" href="{% url 'learning_logs:topic' topic.pk %}">← {{ topic.text }}</a>{% endif %}
+  <h1>{{ title }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary" type="submit">{{ submit|default:"Сохранить" }}</button>
+  </form>
+</section>
+{% endblock %}

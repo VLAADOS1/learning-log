@@ -1,0 +1,16 @@
+services:
+  ip-redirect:
+    image: nginx:alpine
+    ports:
+      - "${APP_BIND_IP:-0.0.0.0}:${APP_PORT:-20010}:8080"
+    configs:
+      - source: redirect_config
+        target: /etc/nginx/conf.d/default.conf
+    restart: unless-stopped
+configs:
+  redirect_config:
+    content: |
+      server {
+        listen 8080;
+        return 302 https://${APP_HOST:?Set APP_HOST}/;
+      }

@@ -1,0 +1,20 @@
+{% extends "learning_logs/base.html" %}
+{% block title %}{{ topic.text }} · Учебный журнал{% endblock %}
+{% block content %}
+<a class="back" href="{% url 'learning_logs:topics' %}">← Мои темы</a>
+<div class="section-heading">
+  <h1>{{ topic.text }}</h1>
+  <a class="btn btn-primary" href="{% url 'learning_logs:new_entry' topic.pk %}">Добавить запись</a>
+</div>
+{% for entry in entries %}
+  <article class="entry">
+    <header class="section-heading">
+      <time datetime="{{ entry.date_added|date:'c' }}">{{ entry.date_added|date:"j E Y, H:i" }}</time>
+      <a href="{% url 'learning_logs:edit_entry' entry.pk %}">Редактировать</a>
+    </header>
+    <div class="entry-text">{{ entry.text }}</div>
+  </article>
+{% empty %}
+  <p class="empty">В этой теме пока нет записей.</p>
+{% endfor %}
+{% endblock %}

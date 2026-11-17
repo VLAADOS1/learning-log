@@ -1,0 +1,16 @@
+services:
+  web:
+    ports: !reset []
+    networks:
+      - proxy
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: traefik_proxy
+      traefik.http.routers.learning-log.rule: "Host(`${APP_HOST:?Set APP_HOST}`)"
+      traefik.http.routers.learning-log.entrypoints: websecure
+      traefik.http.routers.learning-log.tls.certresolver: le
+      traefik.http.services.learning-log.loadbalancer.server.port: "8000"
+networks:
+  proxy:
+    external: true
+    name: traefik_proxy

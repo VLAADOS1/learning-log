@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    env_file: .env
+    environment:
+      SQLITE_PATH: /app/data/db.sqlite3
+    ports:
+      - "${APP_BIND_IP:-0.0.0.0}:${APP_PORT:-20010}:8000"
+    volumes:
+      - journal_data:/app/data
+    restart: unless-stopped
+volumes:
+  journal_data:
